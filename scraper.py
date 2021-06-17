@@ -6,15 +6,22 @@ import requests
 import constants as c
 import helpers as h
 
+
 logger = logging.getLogger(__name__)
+handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+logger.setLevel(logging.INFO)
 
 def get_travel_url_html():
-    logger.info('Starting to scrape')
+    logger.info('Scraping starting')
     response = requests.get(c.TRAVEL_CANADA_URL)
-    logger.info('Finished scraping')
+    logger.info('Scraping complete')
     if response.status_code == 200:
         logger.info('Scrape successful')
-        return BeautifulSoup(response.content, "html")
+        return BeautifulSoup(response.content, "html.parser")
 
 def get_exemption_message(html):
     exemption_element = html.find("div", {"class": "alert alert-warning mrgn-tp-lg"})
