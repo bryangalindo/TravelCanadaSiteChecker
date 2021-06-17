@@ -1,13 +1,19 @@
+import logging
+
 from bs4 import BeautifulSoup
 import requests
 
 import constants as c
 import helpers as h
 
+logger = logging.getLogger(__name__)
 
 def get_travel_url_html():
+    logger.info('Starting to scrape')
     response = requests.get(c.TRAVEL_CANADA_URL)
+    logger.info('Finished scraping')
     if response.status_code == 200:
+        logger.info('Scrape successful')
         return BeautifulSoup(response.content, "html")
 
 def get_exemption_message(html):
