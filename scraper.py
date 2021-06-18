@@ -5,8 +5,8 @@ import constants as c
 import helpers as h
 
 
-def get_travel_url_html():
-    response = requests.get(c.TRAVEL_CANADA_URL)
+def get_travel_url_html(url):
+    response = requests.get(url)
     if response.status_code == 200:
         return BeautifulSoup(response.content, "html.parser")
 
