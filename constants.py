@@ -7,8 +7,8 @@ PERSONAL_PHONE_NUMBER = os.getenv("PERSONAL_PHONE_NUMBER")
 
 TRAVEL_CANADA_URL = "https://travel.gc.ca/travel-covid"
 NOTIFICATION_TEXT = f"There was a change made on the Travel Canada website. Visit {TRAVEL_CANADA_URL}. Text STOP to opt out."
-DATABASE = "travelcanada"
-COLLECTION = "dates"
+MONGODB_DATABASE = os.getenv("MONGODB_DATABASE")
+MONGODB_COLLECTION = os.getenv("MONGODB_COLLECTION")
 
 MONGO_DB_CONNECTION_STRING = os.getenv("MONGO_DB_CONNECTION_STRING")
 
