@@ -9,3 +9,6 @@ TRAVEL_CANADA_URL = "https://travel.gc.ca/travel-covid"
 EXEMPTION_TEXT = "Exemptions for fully vaccinated travellers who are eligible to enter Canada are expected in early July. Current travel restrictions still apply."
 
 MONGO_DB_CONNECTION_STRING = os.getenv("MONGO_DB_CONNECTION_STRING")
+
+EMPTY = 0
+INITIAL_ID = 1
