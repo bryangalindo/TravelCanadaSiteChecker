@@ -8,6 +8,9 @@ class MongoDB:
         self.db = self.client[database]
         self.collection = self.db[collection]
         
+    def get_collection_size(self):
+        return self.db.command('collstats', 'dates')['count']
+        
     def get_last_document(self):
         return self.collection.find().sort("id", -1)[0]
         
@@ -15,7 +18,7 @@ class MongoDB:
         return self.collection.insert_one(_dict)
     
     def generate_id(self):
-        collection_size = self.db.command('collstats', 'dates')['count']
+        collection_size = self.get_collection_size()
         if collection_size == c.EMPTY:
             return c.INITIAL_ID
         else: 
