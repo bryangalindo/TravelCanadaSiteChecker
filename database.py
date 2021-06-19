@@ -9,7 +9,7 @@ class MongoDB:
         self.collection = self.db[collection]
         
     def get_collection_size(self):
-        return self.db.command('collstats', 'dates')['count']
+        return self.db.command('collstats', c.MONGO_DB_COLLECTION)['count']
         
     def get_last_document(self):
         return self.collection.find().sort("id", -1)[0]
