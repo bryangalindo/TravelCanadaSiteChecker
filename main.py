@@ -4,7 +4,7 @@ from scraper import get_travel_url_html, get_url_last_modified_date, get_exempti
 from sms import send_sms_message
 
 
-database = MongoDB(c.MONGO_DB_CONNECTION_STRING, c.DATABASE, c.COLLECTION)
+database = MongoDB(c.MONGO_DB_CONNECTION_STRING, c.MONGO_DB_DATABASE, c.MONGO_DB_COLLECTION)
 html = get_travel_url_html(c.TRAVEL_CANADA_URL)
 
 def check_if_collection_empty():
