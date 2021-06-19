@@ -36,5 +36,7 @@ if __name__ == '__main__':
         if is_changed:
             insert_scraped_data()
             send_sms_message(c.PERSONAL_PHONE_NUMBER, c.TWILIO_PHONE_NUMBER, c.NOTIFICATION_TEXT)
+        else:
+            insert_scraped_data()
     
         
