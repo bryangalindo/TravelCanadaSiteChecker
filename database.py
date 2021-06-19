@@ -22,4 +22,4 @@ class MongoDB:
         if collection_size == c.EMPTY:
             return c.INITIAL_ID
         else: 
-            return self.db.command('collstats', 'dates')['count'] + 1
+            return collection_size + 1
