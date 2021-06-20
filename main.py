@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import constants as c
 from database import MongoDB
 from scraper import get_travel_url_html, get_url_last_modified_date, get_exemption_message
@@ -21,6 +23,7 @@ def check_if_site_changed():
 def insert_scraped_data():
     _dict = {
         "id": database.generate_id(),
+        "timestamp": datetime.now(),
         "last_modified_date": get_url_last_modified_date(html),
         "message": get_exemption_message(html)
     }
@@ -28,15 +31,7 @@ def insert_scraped_data():
 
 
 if __name__ == '__main__':
-    is_empty = check_if_collection_empty()
-    if is_empty:
-        insert_scraped_data()
-    else:
-        is_changed = check_if_site_changed()
-        if is_changed:
-            insert_scraped_data()
-            send_sms_message(c.PERSONAL_PHONE_NUMBER, c.TWILIO_PHONE_NUMBER, c.NOTIFICATION_TEXT)
-        else:
-            insert_scraped_data()
-    
-        
+    insert_scraped_data()
+    is_changed = check_if_site_changed()
+    if is_changed:
+        send_sms_message(c.PERSONAL_PHONE_NUMBER, c.TWILIO_PHONE_NUMBER, c.NOTIFICATION_TEXT)
